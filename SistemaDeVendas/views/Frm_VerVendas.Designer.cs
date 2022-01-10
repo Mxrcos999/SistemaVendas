@@ -31,21 +31,21 @@ namespace projetoVendas.views
         {
             this.components = new System.ComponentModel.Container();
             this.Pnl_VerVendas = new System.Windows.Forms.Panel();
-            this.sistemaVendaDataSet = new SistemaDeVendas.SistemaVendaDataSet();
-            this.vendasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.vendasTableAdapter = new SistemaDeVendas.SistemaVendaDataSetTableAdapters.vendasTableAdapter();
-            this.tableAdapterManager = new SistemaDeVendas.SistemaVendaDataSetTableAdapters.TableAdapterManager();
+            this.label1 = new System.Windows.Forms.Label();
             this.vendasDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
+            this.vendasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sistemaVendaDataSet = new SistemaDeVendas.SistemaVendaDataSet();
+            this.vendasTableAdapter = new SistemaDeVendas.SistemaVendaDataSetTableAdapters.vendasTableAdapter();
+            this.tableAdapterManager = new SistemaDeVendas.SistemaVendaDataSetTableAdapters.TableAdapterManager();
             this.Pnl_VerVendas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sistemaVendaDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendasDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemaVendaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_VerVendas
@@ -59,27 +59,16 @@ namespace projetoVendas.views
             this.Pnl_VerVendas.Size = new System.Drawing.Size(488, 424);
             this.Pnl_VerVendas.TabIndex = 0;
             // 
-            // sistemaVendaDataSet
+            // label1
             // 
-            this.sistemaVendaDataSet.DataSetName = "SistemaVendaDataSet";
-            this.sistemaVendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // vendasBindingSource
-            // 
-            this.vendasBindingSource.DataMember = "vendas";
-            this.vendasBindingSource.DataSource = this.sistemaVendaDataSet;
-            // 
-            // vendasTableAdapter
-            // 
-            this.vendasTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.clientesTableAdapter = null;
-            this.tableAdapterManager.produtosTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SistemaDeVendas.SistemaVendaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.vendasTableAdapter = this.vendasTableAdapter;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.Location = new System.Drawing.Point(102, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(248, 29);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Vendas cadastradas";
             // 
             // vendasDataGridView
             // 
@@ -128,16 +117,27 @@ namespace projetoVendas.views
             this.dataGridViewTextBoxColumn5.HeaderText = "ValorTotal";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
-            // label1
+            // vendasBindingSource
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(102, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 29);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Vendas cadastrados";
+            this.vendasBindingSource.DataMember = "vendas";
+            this.vendasBindingSource.DataSource = this.sistemaVendaDataSet;
+            // 
+            // sistemaVendaDataSet
+            // 
+            this.sistemaVendaDataSet.DataSetName = "SistemaVendaDataSet";
+            this.sistemaVendaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // vendasTableAdapter
+            // 
+            this.vendasTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.clientesTableAdapter = null;
+            this.tableAdapterManager.produtosTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = SistemaDeVendas.SistemaVendaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.vendasTableAdapter = this.vendasTableAdapter;
             // 
             // Frm_VerVendas
             // 
@@ -151,9 +151,9 @@ namespace projetoVendas.views
             this.Load += new System.EventHandler(this.Frm_VerVendas_Load);
             this.Pnl_VerVendas.ResumeLayout(false);
             this.Pnl_VerVendas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sistemaVendaDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendasBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendasDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sistemaVendaDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

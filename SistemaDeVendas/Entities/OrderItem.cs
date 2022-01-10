@@ -23,9 +23,7 @@ namespace Order
 
           //  Quantity = quantity;
             base.DateHourRegister = DateTime.Now;
-          //  product.RemoveAvailableQuantity(quantity);
             var teste = new Frm_CadastrarVenda();
-          //  teste.recebevalor(TotalValue);
         }
         public void recebeDado(decimal valorUnitario, int id, int idprodut, int quantidade)
         {

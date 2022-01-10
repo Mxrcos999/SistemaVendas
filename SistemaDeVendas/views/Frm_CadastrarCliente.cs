@@ -17,6 +17,7 @@ namespace projetoVendas.views
     { 
 
         public Person cadastrarCliente { get; set; }
+        
         public Frm_CadastrarCliente()
         {
             InitializeComponent();
@@ -27,10 +28,18 @@ namespace projetoVendas.views
             try
             {
                 cadastrarCliente = new Person(Txt_nome.Text, Txt_sobrenome.Text, Txt_data.Text, Txt_cpf.Text, Txt_email.Text);
-                var teste = new SQLServerClass();
-                teste.conexao();
-                teste.SQLCommandInsert($"INSERT INTO clientes (nome, sobrenome, cpf, dataN, email) VALUES ('{Txt_nome.Text}', '{Txt_sobrenome.Text}', '{Txt_cpf.Text}', '{Txt_data.Text}', '{Txt_email.Text}')");
-                MessageBox.Show("Cliente cadastrado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var cadastra = new SQLServerClass();
+                cadastra.conexao();
+                if(cadastra.SQLVerificaUsuarioExistente(Txt_cpf.Text, Txt_email.Text))
+                {
+                    
+                    MessageBox.Show("Cliente cadastrado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(cadastra.msg);
+                }
+                else
+                {
+                    MessageBox.Show("Usuario ja existe, insira um cpf ou email diferente");
+                }
             }
             catch (ValidationException ex)
             {

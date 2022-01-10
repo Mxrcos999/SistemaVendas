@@ -76,7 +76,7 @@ namespace Order
                     BirthDate = Convert.ToDateTime(birthDate);
 
                 }
-                catch (FormatException ex)
+                catch (FormatException)
                 {
 
                     throw new FormatException("Digite uma data de nascimento no formato dd/mm/yyyy");
@@ -88,6 +88,10 @@ namespace Order
             base.DateHourRegister = DateTime.Now;
 
           
+        }
+        public void trataDado()
+        {
+
         }
 
         public string FullName =>

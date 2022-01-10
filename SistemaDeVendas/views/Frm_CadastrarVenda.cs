@@ -26,14 +26,7 @@ namespace projetoVendas.views
             valortotal = valor;
 
         }
-        private void Cmb_Cliente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (Customer clientes in Utils.lista())
-            {
-//                Cmb_Cliente.Items.Add(clientes);
-
-            }
-        }
+     
 
         private void Pnl_CadastrarVenda_Paint(object sender, PaintEventArgs e)
         {

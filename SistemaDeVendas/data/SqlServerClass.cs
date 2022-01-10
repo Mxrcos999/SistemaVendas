@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,9 +46,11 @@ namespace projetoVendas.data
           
         }
 
-       
+   
         public bool SQLCommandInsert(string SQL)
         {
+            var sw = new Stopwatch();
+            sw.Start();
             var cmd = new SqlCommand();
             cmd.CommandText = SQL;
 
@@ -67,15 +70,60 @@ namespace projetoVendas.data
             finally
             {
                 connDB.Close();
+                sw.Stop();
+                msg = Convert.ToString(sw.ElapsedTicks);
+
+
+            }
+        }
+        public bool SQLVerificaUsuarioExistente(string CPF, string EMAIL)
+        {
+
+            var cmd = new SqlCommand();
+            cmd.CommandText = $"select cpf, email from clientes";
+
+
+            try
+            {
+                cmd.Connection = conexao();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string cpf = reader.GetString(0);
+                    string email = reader.GetString(1);
+                    if (cpf == CPF || email == EMAIL)
+                    {
+                        return false;
+                    }
+
+
+                }
+               
+         
+
+
+
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                return false;
+            }
+            finally
+            {
+                connDB.Close();
             }
 
         }
+
+
+
+
         public bool SQLCommandSelectCliente(int idCliente)
         {
          
             var cmd = new SqlCommand();
             cmd.CommandText = $"select id from clientes WHERE id ={ idCliente}";
-
 
     
             try
@@ -132,8 +180,15 @@ namespace projetoVendas.data
                     throw new SelectException("Insira um produto valido!");
 
                 }
+                if(quantidade > Convert.ToInt32(_quantidade) || quantidade <= 0)
+                {
+                    throw new SelectException("Insira uma quantidade válida!");
+
+                }
                 var teste = new OrderItem(Convert.ToInt32(_quantidade));
                 teste.recebeDado(valor, Convert.ToInt32(id), Convert.ToInt32(idProdut), quantidade);
+                UpdateProduto(Convert.ToInt32(_quantidade), quantidade, Convert.ToInt32(idProdut));
+
                 return true;
 
                
@@ -149,9 +204,30 @@ namespace projetoVendas.data
             }
 
         }
-        public void Close()
+
+        public void UpdateProduto(int quantidadeBanco, int quantidadeSolicitada, int id)
         {
-            connDB.Close();
+            int quantidadeRestante = quantidadeBanco - quantidadeSolicitada;
+            var cmd = new SqlCommand();
+
+
+            if (quantidadeRestante == 0)
+            {
+                cmd.CommandText = $"delete from produtos where id = {id}";
+
+                cmd.Connection = conexao();
+                cmd.ExecuteNonQuery();
+
+                // update produtos set quantidade = 10 where id = 1;
+
+            }
+            else
+            {
+                cmd.CommandText = $"update produtos set quantidade = {quantidadeRestante} where id = {id}";
+                cmd.Connection = conexao();
+                cmd.ExecuteNonQuery();
+            }
         }
+      
     }
 }
